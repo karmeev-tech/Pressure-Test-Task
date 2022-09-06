@@ -46,6 +46,9 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -86,13 +89,38 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\BaseCommands.cs" />
+    <Compile Include="Commands\Graphic\GraphicCommandsCollection.cs" />
+    <Compile Include="Commands\Graphic\OpenSettingsCommand.cs" />
+    <Compile Include="Commands\Graphic\StartCommand.cs" />
+    <Compile Include="Commands\Graphic\StopCommand.cs" />
+    <Compile Include="Commands\Settings\SettingsCommandsCollection.cs" />
+    <Compile Include="Commands\Settings\SetValueCommand.cs" />
+    <Compile Include="DataLibrary\DataAccess.cs" />
+    <Compile Include="DataLibrary\Model\ComboBoxCollection.cs" />
+    <Compile Include="DataLibrary\Model\FirstSeriesCollection.cs" />
+    <Compile Include="DataLibrary\Model\GraphicButtonsCollection.cs" />
+    <Compile Include="DataLibrary\Model\SettingsButtonCollection.cs" />
+    <Compile Include="DataLibrary\Model\SettingsTBCollection.cs" />
+    <Compile Include="JSON\JSONValue.cs" />
+    <Compile Include="JSON\JSONReader.cs" />
+    <Compile Include="JSON\JSONWriter.cs" />
+    <Compile Include="Model\FallPressure.cs" />
+    <Compile Include="Model\MagnificationPressure.cs" />
+    <Compile Include="Model\ModelPropertyChanged.cs" />
+    <Compile Include="Model\RandomPressure.cs" />
+    <Compile Include="Model\StaticPressure.cs" />
     <Compile Include="View\GraphicPage.xaml.cs">
       <DependentUpon>GraphicPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\SettingsWindow.xaml.cs">
+      <DependentUpon>SettingsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VM\ChartViewModel.cs" />
+    <Compile Include="VM\ObservableObject.cs" />
     <Compile Include="VM\SettingsViewModel.cs" />
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -114,6 +142,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\SettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -130,9 +162,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="JSON\values.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -143,13 +176,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DataLibrary\DataLibrary.csproj">
-      <Project>{EC31C9DC-D654-4B33-BEBA-51C18F77E21F}</Project>
-      <Name>DataLibrary</Name>
-    </ProjectReference>
+    <Resource Include="TextFile1.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

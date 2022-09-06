@@ -11,9 +11,9 @@ namespace DataLibrary.Model
         {
             return new ObservableCollection<RadioButton>
             {
-                new RadioButton(){Content = "Эмуляция статического значения давления"},
-                new RadioButton(){Content = "Эмуляция падения либо увеличения давления с определенным шагом"},
-                new RadioButton(){Content = "Эмуляция случайного давления, но с верхним ограничением номинала"}
+                new RadioButton(){Content = "Эмуляция статического значения давления", GroupName = "params"},
+                new RadioButton(){Content = "Эмуляция падения либо увеличения давления с определенным шагом", GroupName = "params"},
+                new RadioButton(){Content = "Эмуляция случайного давления, но с верхним ограничением номинала", GroupName = "params"}
             };
         }
     }

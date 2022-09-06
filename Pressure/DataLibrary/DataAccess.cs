@@ -1,9 +1,9 @@
-﻿using DataLibrary.Model;
+﻿using Pressure.DataLibrary.Model;
 using LiveCharts;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 
-namespace DataLibrary
+namespace Pressure.DataLibrary
 {
     public class DataAccess
     {
@@ -12,13 +12,6 @@ namespace DataLibrary
         public SeriesCollection GetFirstSeriesCollection()
         {
             return _startCollection.Collection;
-        }
-
-        readonly SettingsRBCollection _settingsRBCollection = new SettingsRBCollection();
-
-        public ObservableCollection<RadioButton> GetSettingsRBs() 
-        {
-            return _settingsRBCollection.CollectionRBs;
         }
 
         readonly SettingsTBCollection _settingsTBCollection = new SettingsTBCollection();
@@ -35,12 +28,16 @@ namespace DataLibrary
             return _graphicBCollection.CollectionBs;
         }
 
+        readonly SettingsButtonCollection _settingsButtonCollection = new SettingsButtonCollection();
         public ObservableCollection<Button> GetParamsButton()
         {
-            return new ObservableCollection<Button>
-            {
-                new Button() { Content = "Установить"}
-            };
+            return _settingsButtonCollection.CollectionBs;
+        }
+
+        readonly ComboBoxCollection _comboBoxCollection = new ComboBoxCollection();
+        public ObservableCollection<string> GetComboBoxCollection()
+        {
+            return _comboBoxCollection.CBCollection;
         }
     }
 }

@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\FirstSeriesCollection.cs" />
+    <Compile Include="Model\GraphicButtonsCollection.cs" />
     <Compile Include="Model\SettingsRBCollection.cs" />
     <Compile Include="Model\SettingsTBCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

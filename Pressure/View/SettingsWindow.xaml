@@ -1,13 +1,13 @@
-﻿<Window x:Class="Pressure.View.MainWindow"
+﻿<Window x:Class="Pressure.View.SettingsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Pressure.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="532" Width="856">
+        Title="SettingsWindow" Height="450" Width="800">
     <Grid>
-        <Frame NavigationUIVisibility="Hidden" Source="/View/GraphicPage.xaml"/>
+        <Frame Source="/View/SettingsPage.xaml"/>
 
     </Grid>
 </Window>

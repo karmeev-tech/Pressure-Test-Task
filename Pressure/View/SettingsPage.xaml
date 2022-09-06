@@ -5,29 +5,35 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Pressure.View"
       xmlns:VM="clr-namespace:Pressure.VM"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="SettingsPage">
+      mc:Ignorable="d"
+      Title="SettingsPage" Height="454" Width="755">
 
     <Page.DataContext>
         <VM:SettingsViewModel/>
     </Page.DataContext>
 
     <Grid>
-        <ItemsControl ItemsSource="{Binding RBs}" Margin="192,248,124,139">
+
+        <!--<ItemsControl ItemsSource="{Binding TextBoxes}" Margin="192,168,192,263">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <RadioButton Content="{Binding Content}"/>
+                    <TextBlock Text="{Binding Type}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>-->
+
+
+
+        <ItemsControl ItemsSource="{Binding SaveParams}" Margin="192,202,192,227">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Content="{Binding Content}" Command="{Binding Command}"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
-        <ItemsControl ItemsSource="{Binding TBs}" Margin="192,168,192,225">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock/>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        <Label x:Name="PressureLabel" Content="Давление" HorizontalAlignment="Left" Margin="123,163,0,0" VerticalAlignment="Top" Height="28"/>
+        <ComboBox Margin="192,120,192,304" ItemsSource="{Binding TypeOfExperiment}" SelectedIndex="{Binding PressureType}"/>
+        <TextBox x:Name="PressureValueTextBox" HorizontalAlignment="Center" Margin="0,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="371" Text="{Binding PressureValue}"/>
     </Grid>
 </Page>

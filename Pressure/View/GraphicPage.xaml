@@ -13,9 +13,12 @@
     <Page.DataContext>
         <VM:ChartViewModel/>
     </Page.DataContext>
-    
+
     <Grid>
-        <lvc:CartesianChart Grid.Row="1" Series="{Binding SeriesCollection}" LegendLocation="Right">
+        <lvc:CartesianChart Margin="0,50,0,0">
+            <lvc:CartesianChart.Series>
+                <lvc:LineSeries Values="{Binding Values}"/>
+            </lvc:CartesianChart.Series>
             <lvc:CartesianChart.AxisX>
                 <lvc:Axis Title="Время(X)" Labels="{Binding BarLabels}"></lvc:Axis>
             </lvc:CartesianChart.AxisX>
@@ -23,5 +26,14 @@
                 <lvc:Axis Title="Давление(Y)" Labels="{Binding Formatter}"></lvc:Axis>
             </lvc:CartesianChart.AxisY>
         </lvc:CartesianChart>
+        
+
+        <ItemsControl ItemsSource="{Binding Buttons}" Margin="200,0,200,387">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Content="{Binding Content}" Command ="{Binding Command}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </Page>

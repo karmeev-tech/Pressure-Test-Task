@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Controls;
 
-namespace DataLibrary.Model
+namespace Pressure.DataLibrary.Model
 {
     internal class SettingsTBCollection
     {
@@ -16,7 +11,6 @@ namespace DataLibrary.Model
         {
             return new ObservableCollection<TextBox>
             {
-                new TextBox(),
                 new TextBox()
             };
         }
