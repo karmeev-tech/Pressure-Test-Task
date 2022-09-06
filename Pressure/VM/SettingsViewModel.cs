@@ -4,7 +4,6 @@ using Pressure.DataLibrary.Model;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace Pressure.VM
 {
@@ -19,19 +18,26 @@ namespace Pressure.VM
             PressureType = 0;
         }
 
+        #region Fields
         private string _pressureValue = "";
+        private int _pressureType;
+        private ObservableCollection<string> _experimentValues = new ObservableCollection<string> { "", "" };
+        private ObservableCollection<Button> _saveParams;
+        private ObservableCollection<string> _typeOfExperiment;
+        #endregion
+
+        #region Properties
         public string PressureValue
         {
             get { return _pressureValue; }
-            set 
-            { 
+            set
+            {
                 _pressureValue = value;
                 _experimentValues[0] = _pressureValue;
                 _saveParams[0].CommandParameter = _experimentValues;
-                Console.WriteLine("Pressure:" + _pressureValue); 
+                Console.WriteLine("Pressure:" + _pressureValue);
             }
         }
-        private int _pressureType;
         public int PressureType
         {
             get { return _pressureType; }
@@ -42,26 +48,23 @@ namespace Pressure.VM
                 Console.WriteLine("Type:" + PressureType);
             }
         }
-        private ObservableCollection<string> _experimentValues = new ObservableCollection<string>{"",""};
         public ObservableCollection<string> ExperimentValues
         {
             get { return _experimentValues; }
             set { _experimentValues = value; }
         }
 
-        private ObservableCollection<Button> _saveParams;
-        public ObservableCollection<Button> SaveParams 
-        { 
-            get { return _saveParams; } 
+        public ObservableCollection<Button> SaveParams
+        {
+            get { return _saveParams; }
             set { _saveParams = value; }
         }
-
-        private ObservableCollection<string> _typeOfExperiment;
         public ObservableCollection<string> TypeOfExperiment
         {
             get { return _typeOfExperiment; }
             set { _typeOfExperiment = value; }
         }
+        #endregion
 
         readonly SettingsCommandsCollection SettingsCommands = new SettingsCommandsCollection();
     }

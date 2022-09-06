@@ -107,7 +107,7 @@
     <Compile Include="JSON\JSONWriter.cs" />
     <Compile Include="Model\FallPressure.cs" />
     <Compile Include="Model\MagnificationPressure.cs" />
-    <Compile Include="Model\ModelPropertyChanged.cs" />
+    <Compile Include="Model\MajorExperiment.cs" />
     <Compile Include="Model\RandomPressure.cs" />
     <Compile Include="Model\StaticPressure.cs" />
     <Compile Include="View\GraphicPage.xaml.cs">
