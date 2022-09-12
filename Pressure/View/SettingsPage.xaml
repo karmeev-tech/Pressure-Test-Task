@@ -14,17 +14,7 @@
 
     <Grid>
 
-        <!--<ItemsControl ItemsSource="{Binding TextBoxes}" Margin="192,168,192,263">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Type}"/>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>-->
-
-
-
-        <ItemsControl ItemsSource="{Binding SaveParams}" Margin="192,202,192,227">
+        <ItemsControl ItemsSource="{Binding SaveParams}" Margin="192,251,192,178">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Button Content="{Binding Content}" Command="{Binding Command}"/>
@@ -32,8 +22,22 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
-        <Label x:Name="PressureLabel" Content="Давление" HorizontalAlignment="Left" Margin="123,163,0,0" VerticalAlignment="Top" Height="28"/>
+        <ItemsControl ItemsSource="{Binding Labels}" Margin="10,0,563,216" Padding="0,4,0,0" HorizontalContentAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Height="88">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Content="{Binding Content}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemContainerStyle>
+                <Style>
+                    <Setter Property="FrameworkElement.Margin" Value="7"/>
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+        </ItemsControl>
+
         <ComboBox Margin="192,120,192,304" ItemsSource="{Binding TypeOfExperiment}" SelectedIndex="{Binding PressureType}"/>
         <TextBox x:Name="PressureValueTextBox" HorizontalAlignment="Center" Margin="0,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="371" Text="{Binding PressureValue}"/>
+        <TextBox x:Name="LimitationValueTextBox" HorizontalAlignment="Center" Margin="0,209,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="371" Text="{Binding PressureUpperLimitation}"/>
+
     </Grid>
 </Page>

@@ -7,18 +7,37 @@ namespace Pressure.DataLibrary
 {
     public class DataAccess
     {
+
+        #region Settings
+
+        readonly ComboBoxCollection _comboBoxCollection = new ComboBoxCollection();
+        public ObservableCollection<string> GetComboBoxCollection()
+        {
+            return _comboBoxCollection.CBCollection;
+        }
+
+        readonly SettingsButtonCollection _settingsButtonCollection = new SettingsButtonCollection();
+        public ObservableCollection<Button> GetParamsButton()
+        {
+            return _settingsButtonCollection.CollectionBs;
+        }
+
+        readonly SettingsLabelsCollection _settingsLabelsCollection = new SettingsLabelsCollection();
+
+        public ObservableCollection<Label> GetLabelsCollection()
+        {
+            return _settingsLabelsCollection.CollectionLs;
+        }
+
+        #endregion
+
+        #region Graphic
+
         readonly FirstSeriesCollection _startCollection = new FirstSeriesCollection();
 
         public SeriesCollection GetFirstSeriesCollection()
         {
             return _startCollection.Collection;
-        }
-
-        readonly SettingsTBCollection _settingsTBCollection = new SettingsTBCollection();
-
-        public ObservableCollection<TextBox> GetSettingsTBs()
-        {
-            return _settingsTBCollection.CollectionTBs;
         }
 
         readonly GraphicButtonsCollection _graphicBCollection = new GraphicButtonsCollection();
@@ -28,16 +47,6 @@ namespace Pressure.DataLibrary
             return _graphicBCollection.CollectionBs;
         }
 
-        readonly SettingsButtonCollection _settingsButtonCollection = new SettingsButtonCollection();
-        public ObservableCollection<Button> GetParamsButton()
-        {
-            return _settingsButtonCollection.CollectionBs;
-        }
-
-        readonly ComboBoxCollection _comboBoxCollection = new ComboBoxCollection();
-        public ObservableCollection<string> GetComboBoxCollection()
-        {
-            return _comboBoxCollection.CBCollection;
-        }
+        #endregion
     }
 }

@@ -1,0 +1,17 @@
+﻿<Window x:Class="Pressure.View.DBWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Pressure.View"
+        mc:Ignorable="d"
+        Title="DBWindow" Height="448" Width="636">
+    <Grid Margin="0,0,0,-6">
+        <TabControl>
+            <TabItem Header="Experiments">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>

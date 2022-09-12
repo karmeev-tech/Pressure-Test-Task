@@ -16,6 +16,21 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -57,6 +72,7 @@
       <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
@@ -101,15 +117,15 @@
     <Compile Include="DataLibrary\Model\FirstSeriesCollection.cs" />
     <Compile Include="DataLibrary\Model\GraphicButtonsCollection.cs" />
     <Compile Include="DataLibrary\Model\SettingsButtonCollection.cs" />
-    <Compile Include="DataLibrary\Model\SettingsTBCollection.cs" />
+    <Compile Include="DataLibrary\Model\SettingsLabelsCollection.cs" />
     <Compile Include="JSON\JSONValue.cs" />
     <Compile Include="JSON\JSONReader.cs" />
     <Compile Include="JSON\JSONWriter.cs" />
-    <Compile Include="Model\FallPressure.cs" />
-    <Compile Include="Model\MagnificationPressure.cs" />
-    <Compile Include="Model\MajorExperiment.cs" />
-    <Compile Include="Model\RandomPressure.cs" />
-    <Compile Include="Model\StaticPressure.cs" />
+    <Compile Include="Model\Database\DBSender.cs" />
+    <Compile Include="Model\Experiment.cs" />
+    <Compile Include="View\DBWindow.xaml.cs">
+      <DependentUpon>DBWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GraphicPage.xaml.cs">
       <DependentUpon>GraphicPage.xaml</DependentUpon>
     </Compile>
@@ -120,8 +136,11 @@
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="VM\ChartViewModel.cs" />
-    <Compile Include="VM\ObservableObject.cs" />
     <Compile Include="VM\SettingsViewModel.cs" />
+    <Page Include="View\DBWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -176,7 +195,25 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="TextFile1.txt" />
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model\Database\Database.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Model\Database\Database_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>Database.mdf</DependentUpon>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

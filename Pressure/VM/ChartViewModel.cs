@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using Pressure.JSON;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.IO;
+using Pressure.Model;
 
 namespace Pressure.VM
 {
@@ -23,32 +25,43 @@ namespace Pressure.VM
                new ObservablePoint(0,0)
             };
             SetTimer();
-            _timerAndValues.Add(_timer);
+            _timerAndSafeValues.Add(_timer);
+            _timerAndValue.Add(_timer);
+            _timerAndValue.Add(_dependentValue);
+            CreateFileWatcher(@"..\..\JSON\");
+            Buttons[0].CommandParameter = _timerAndValue;
+            Buttons[1].CommandParameter = _timerAndSafeValues;
         }
 
         #region Fields
         private ChartValues<ObservablePoint> _values;
+        private static int _dependentValue = 0; //обслуживается ивентом
+        private readonly List<object> _timerAndValue = new List<object>();
         private ObservableCollection<Button> _buttons;
         readonly JSONReader _jsonFile = new JSONReader();
         private int _counter = 0; //only for x steps
-        readonly private ObservableCollection<object> _timerAndValues = new ObservableCollection<object>();
-        readonly private List<string> _stringValues = new List<string>();
+        readonly private ObservableCollection<object> _timerAndSafeValues = new ObservableCollection<object>();
+        readonly private List<string> _safeValues = new List<string>();
         private static System.Timers.Timer _timer;
+        readonly Experiment _experiment = new Experiment();
+
+        private int _x = 0; //после замены ивента убрать
         #endregion
 
         #region Properties
+        public int DependentValue { get { return _dependentValue; } set { _dependentValue = value; } }
         public ChartValues<ObservablePoint> Values 
         { 
             get { return _values; }
             set { 
                 _values = value; 
-                if(_timerAndValues.Count == 2)
+                if(_timerAndSafeValues.Count == 2)
                 {
-                    _timerAndValues[1] = _stringValues;
+                    _timerAndSafeValues[1] = _safeValues;
                 }
                 else
                 {
-                    _timerAndValues.Add(_stringValues);
+                    _timerAndSafeValues.Add(_safeValues);
                 }
             } 
         }
@@ -69,17 +82,45 @@ namespace Pressure.VM
             _timer.Elapsed += TimerElapsed;
             _timer.AutoReset = true;
             _timer.Enabled = false;
-            Buttons[0].CommandParameter = _timer;
-            Buttons[1].CommandParameter = _timerAndValues;
         }
 
         private void TimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            Values.Add(new ObservablePoint(_counter, _jsonFile.GetPressure()[1]));
-            _stringValues.Add(Convert.ToString(_counter) + ", " + Convert.ToString(_jsonFile.GetPressure()[1]));
+            DependentValue = _experiment.StartExperiment(_dependentValue,_jsonFile.GetTypeOfPressure(),_jsonFile.GetLimitation());
+            DependentValue = _dependentValue;
+            OnPropertyChanged("DependentValue");
+            Values.Add(new ObservablePoint(_counter, DependentValue));
+            _safeValues.Add(Convert.ToString(Convert.ToString(_dependentValue)));
             _counter++;
+            if (_timerAndSafeValues.Count != 3)
+            {
+                _timerAndSafeValues.Add(_jsonFile.GetTypeOfPressure());
+            }
             OnPropertyChanged("Values");
         }
+
+        #region File Watcher Event 
+        public void CreateFileWatcher(string path)
+        {
+            FileSystemWatcher watcher = new FileSystemWatcher();
+            watcher.Path = path;
+            watcher.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite
+               | NotifyFilters.FileName | NotifyFilters.DirectoryName;
+            watcher.Filter = "*.json";
+            watcher.Changed += new FileSystemEventHandler(OnChanged);
+            watcher.EnableRaisingEvents = true;
+        }
+
+        private void OnChanged(object source, FileSystemEventArgs e)
+        {
+            if(_x == 0)
+            {
+                _dependentValue = _jsonFile.GetPressure()[1];
+                _x++;
+            }
+            _timerAndValue[1] = _dependentValue;
+        }
+        #endregion  //вместо него сделать такой ивент чтоб он один раз прочитал и всё, когда кнопка старт например нажата
 
         #region INotifyPropertyChanged implementation
 
@@ -92,5 +133,6 @@ namespace Pressure.VM
 
         #endregion
 
+        
     }
 }

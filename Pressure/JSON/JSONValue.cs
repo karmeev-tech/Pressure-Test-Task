@@ -7,6 +7,7 @@ namespace Pressure.JSON
         public int Type { get; set; }
         public List<int> Pressure { get; set; }
         public string Safe { get; set; }
+        public string UpperLimitation { get; set; }
 
     }
 }

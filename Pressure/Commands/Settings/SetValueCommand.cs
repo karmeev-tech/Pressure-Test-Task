@@ -1,5 +1,4 @@
 ﻿using Pressure.JSON;
-using Pressure.Model;
 using System;
 using System.Collections.ObjectModel;
 
@@ -10,14 +9,13 @@ namespace Pressure.Commands.Settings
         public override void Execute(object parameter)
         {
             ObservableCollection<string> values = (ObservableCollection<string>)parameter;
-            //здесь нихуя не ставим, ток тип эксперимента, он его заебенит на chartVM
-            SetTypeOfExperiment(values[1]);
+            SetTypeOfExperiment(values);
         }
 
-        private void SetTypeOfExperiment(string type)
+        private void SetTypeOfExperiment(ObservableCollection<string> values)
         {
             JSONWriter writer = new JSONWriter();
-            writer.WriteTypeToJSON(Convert.ToInt32(type));
+            writer.WriteParamsToJSON(Convert.ToInt32(values[1]), Convert.ToInt32(values[0]), values[2]);
         }
     }
 }
