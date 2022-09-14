@@ -21,5 +21,11 @@ namespace Pressure.Commands.Graphic
         {
             return Stop;
         }
+
+        private ICommand OpenDB => new OpenDBCommand();
+        public ICommand GetOpenDB()
+        {
+            return OpenDB;
+        }
     }
 }

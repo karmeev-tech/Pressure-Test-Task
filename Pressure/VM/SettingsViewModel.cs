@@ -1,6 +1,5 @@
 ﻿using Pressure.Commands.Settings;
 using Pressure.DataLibrary;
-using Pressure.DataLibrary.Model;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;

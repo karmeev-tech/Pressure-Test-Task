@@ -15,7 +15,7 @@
     </Page.DataContext>
 
     <Grid>
-        <lvc:CartesianChart Margin="0,50,0,0">
+        <lvc:CartesianChart Margin="0,84,0,0">
             <lvc:CartesianChart.Series>
                 <lvc:LineSeries Values="{Binding Values}"/>
             </lvc:CartesianChart.Series>

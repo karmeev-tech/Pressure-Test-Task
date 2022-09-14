@@ -1,10 +1,4 @@
-﻿using Pressure.JSON;
-using Pressure.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 
 namespace Pressure.Model
 {
@@ -32,7 +26,7 @@ namespace Pressure.Model
                         return value + randomValue;
                     }
             }
-            return 0;
+            return value;
         }
     }
 }
